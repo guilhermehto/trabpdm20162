@@ -8,40 +8,31 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.ghelfer.trabalhopdm20162.MainActivity">
+    tools:context="com.ghelfer.trabalhopdm20162.AdministradorActivity">
 
     <EditText
+        android:id="@+id/editLoginAdminG6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Matricula" />
+        android:hint="Login"
+        android:textAlignment="center"/>
 
     <EditText
+        android:id="@+id/editSenhaAdminG6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Senha" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:text="Status"/>
+        android:hint="Senha"
+        android:textAlignment="center"
+        android:inputType="textPassword"/>
 
     <Button
+        android:id="@+id/btnEntrarPainelG6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Entrar" />
+        android:text="Entrar"
+        android:onClick="onBtnEntrarClickedG6"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Cadastrar" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:hint="Administrador"
-        android:onClick="onBtnAdministradorClicked"/>
 
 
 </LinearLayout>
