@@ -1,9 +1,14 @@
 package com.ghelfer.trabalhopdm20162;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -78,6 +83,26 @@ public class ListarPessoasActivity extends AppCompatActivity {
                 }
             }
         });
+        
+        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListarPessoasActivity.this, "Selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ListarPessoasActivity.this, "Long Click", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
 
 
 
@@ -119,10 +144,44 @@ public class ListarPessoasActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(ListarPessoasActivity.this, "OH NOES", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListarPessoasActivity.this, "Erro: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_list_pessoa, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        if(idPessoa == null){
+            Toast.makeText(this, "Selecione um usuário antes.", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        Intent intent;
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId()) {
+            case R.id.menuListarFrequenciaG6:
+                intent = new Intent(this, ListarFrequenciasActivity.class);
+                intent.putExtra("idpessoa", idPessoa);
+                startActivity(intent);
+                return true;
+            case R.id.menuListarPagamentosG6:
+                intent = new Intent(this, ListarPagamentosActivity.class);
+                intent.putExtra("idpessoa", idPessoa);
+                startActivity(intent);
+                return true;
+        }
+        return true;
+    }
+
 
     protected void onBtnAtualizarClicked(View v){
         String nome = txtNome.getText().toString();
@@ -151,7 +210,7 @@ public class ListarPessoasActivity extends AppCompatActivity {
             params.add("status", "D");
         }
 
-        client.post(URL_ATUALIZAR_PESSOA, new AsyncHttpResponseHandler() {
+        client.post(URL_ATUALIZAR_PESSOA, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 

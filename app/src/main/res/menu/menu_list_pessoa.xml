@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menuListarFrequenciaG6"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Listar Frequência" />
+
+    <item android:id="@+id/menuListarPagamentosG6"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Listar Pagamentos" />
+
+
+</menu>
