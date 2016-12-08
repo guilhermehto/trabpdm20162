@@ -160,7 +160,7 @@ public class ListarPessoasActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(ListarPessoasActivity.this, "Erro na atualização", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListarPessoasActivity.this, "Erro na atualização de pessoa", Toast.LENGTH_SHORT).show();
             }
         });
 
